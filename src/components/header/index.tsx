@@ -17,6 +17,7 @@ const Header = () => {
 
     useEffect(() => {
         const handleClickOutside = (event: any) => {
+            // @ts-ignore
             if (profileCardRef.current && !profileCardRef.current?.contains(event.target)) {
                 setShowProfileCard(false);
             }
