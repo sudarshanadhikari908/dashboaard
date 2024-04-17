@@ -1,6 +1,11 @@
 import './table.css'
 
-const Table = () => {
+interface IProps {
+  loading: boolean;
+  data: any;
+}
+
+const Table = ({loading, data}: IProps) => {
   return (
     <div className="table-container">
     <table className="custom-table">

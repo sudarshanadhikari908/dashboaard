@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
-    "Authorization": "Bearer " + cookies.get("token")
+    "Authorization": "Bearer " + cookies.get("token"),
   },
 });
 

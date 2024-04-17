@@ -6,7 +6,6 @@ import { faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Cookies from 'universal-cookie';
 import axiosInstance from '../../axios';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 const Login = () => {
   const cookies = new Cookies();
@@ -49,7 +48,6 @@ const Login = () => {
   };
 
   return (
-    <>
       <div className="login-container">
         <h2 className='form-title'>Login</h2>
         <div className="underline"></div>
@@ -90,7 +88,6 @@ const Login = () => {
           <button disabled={(formData.username.trim() === '' || formData.password.trim() === '') || formLoading} type="submit">  {formLoading && <FontAwesomeIcon icon={faSpinner} spin />} Login</button>
         </form>
       </div>
-    </>
   );
 };
 

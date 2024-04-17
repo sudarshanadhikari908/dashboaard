@@ -1,14 +1,18 @@
-import React from 'react'
-import Sidebar from '../sidebar'
-import Header from '../header'
+import React, { ReactNode } from 'react';
+import Sidebar from '../sidebar';
+import Header from '../header';
+import './layout.css'; // Import layout-specific CSS for styling
 
-const Layout = () => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <>
-    <Header/>
-    <Sidebar/>
-    </>
-  )
-}
+    <div className="layout-container">
+      <Header />
+      <div className="content-container">
+        <Sidebar />
+        <div className="main-content">{children}</div>
+      </div>
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;

@@ -13,9 +13,7 @@ const Sidebar = () => {
 
     return (
         <div className="sidebar">
-            <div className="logo">
-                <img src={'logo'} alt="Logo" />
-            </div>
+           
             <div className="sidebar-item">
                 <Link
                     to="/"

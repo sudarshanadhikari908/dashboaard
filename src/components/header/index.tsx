@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import profileImage from '../../assets/profile.jpg'
-import './header.css'
+import profileImage from '../../assets/profile.jpg';
+import './header.css';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -17,7 +17,7 @@ const Header = () => {
 
     useEffect(() => {
         const handleClickOutside = (event: any) => {
-            // @ts-ignore
+            // @ts-expect-error
             if (profileCardRef.current && !profileCardRef.current?.contains(event.target)) {
                 setShowProfileCard(false);
             }
@@ -31,20 +31,23 @@ const Header = () => {
 
     return (
         <div className="header-container">
+            <div className="logo">
+                <img src={'logo'} alt="Logo" />
+            </div>
             <div className="profile-image-container" onClick={toggleProfileCard}>
                 <img src={profileImage} alt="Profile" className="profile-image" />
                 {showProfileCard && (
                     <div className="profile-card" ref={profileCardRef}>
-                        <div className="profile-name">John Doe</div>
-                        <ul className="profile-menu">
-                            <li>Profile</li>
-                            <li onClick={() => navigate('/login')}>Logout</li>
-                        </ul>
+                        <div className="profile-menu">
+                            <div className="profile-name">John Doe</div>
+                            <div className="profile-menu-item" onClick={() => navigate('/profile')}>Profile</div>
+                            <div className="profile-menu-item" onClick={() => navigate('/login')}>Logout</div>
+                        </div>
                     </div>
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
