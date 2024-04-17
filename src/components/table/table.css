@@ -1,0 +1,55 @@
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    max-width: 100%; /* Adjust the maximum width as needed */
+  }
+  
+  .custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden; /* Hide overflow to prevent borders from showing outside of table */
+  }
+  
+  .custom-table th {
+    background-color: #f2f2f2; /* Gray background for header */
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .custom-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Add bottom border to separate rows */
+  }
+  
+  .custom-table tr:last-child td {
+    border-bottom: none; 
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    white-space: nowrap; 
+  }
+  
+  .pagination {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .pagination button {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 2px;
+    padding: 5px 10px;
+  }
+  
+  .pagination button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .pagination .active {
+    background-color: #ccc;
+  }
+  

@@ -1,4 +1,7 @@
 import axios from "axios";
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const axiosInstance = axios.create({
   // It is better to put the base url in .env file
@@ -6,6 +9,7 @@ const axiosInstance = axios.create({
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
+    "Authorization": "Bearer " + cookies.get("token")
   },
 });
 

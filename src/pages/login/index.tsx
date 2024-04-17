@@ -3,11 +3,13 @@ import './login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Cookies from 'universal-cookie';
 import axiosInstance from '../../axios';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
-
+  const cookies = new Cookies();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
@@ -36,6 +38,7 @@ const Login = () => {
         }
       );
       if (response.status === 200) {
+        cookies.set("token", response?.data?.data[0]?.jwt_token)
         navigate('/');
       }
     } catch (error) {

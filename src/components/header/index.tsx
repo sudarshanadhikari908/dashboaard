@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import profileImage from '../../assets/profile.jpg'
 import './header.css'
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
 
     const [showProfileCard, setShowProfileCard] = useState(false);
+    const navigate = useNavigate();
 
     const toggleProfileCard = () => {
         setShowProfileCard(!showProfileCard);
@@ -19,7 +21,7 @@ const Header = () => {
                     <div className="profile-name">John Doe</div>
                     <ul className="profile-menu">
                         <li>Profile</li>
-                        <li>Logout</li>
+                        <li onClick={()=>navigate('/login')}>Logout</li>
                     </ul>
                 </div>
             )}
