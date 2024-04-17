@@ -1,67 +1,93 @@
 import { useState } from 'react';
 import './login.css';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import axiosInstance from '../../axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [showPassword, setShowPassword] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleLogin = async () => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevShowPassword => !prevShowPassword);
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormLoading(true);
     try {
-      const response = await axios.post(
-        'https://jp-dev.cityremit.global/web-api/config/v1/auths/login',
+      const response = await axiosInstance.post(
+        'config/v1/auths/login',
         {
-          login_id: username,
-          login_password: password,
+          login_id: formData?.username,
+          login_password: formData?.password,
           ip_address: '182.93.95.159',
         }
       );
-      console.log(response.data);
+      if (response.status === 200) {
+        navigate('/');
+      }
     } catch (error) {
-      setError('Invalid username or password');
-      console.error('Login error:', error);
+      setError('Invalid Username or Password');
+    } finally {
+      setFormLoading(false);
     }
   };
 
   return (
-    <div className="login-container">
-      <h2 className='form-title'>Login</h2>
-      <div className="underline"></div>
-      <form onSubmit={e => { e.preventDefault(); handleLogin(); }}>
-        <div className="form-group">
-          <div className="input-with-icon">
-            <FontAwesomeIcon icon={faUser} className="input-icon" />
-            <input
-              placeholder='Username'
-              type="text"
-              id="username"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-            />
+    <>
+      <div className="login-container">
+        <h2 className='form-title'>Login</h2>
+        <div className="underline"></div>
+        {error && <div className="error-message">{error}</div>}
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <div className="input-with-icon">
+              <FontAwesomeIcon icon={faUser} className="input-icon" />
+              <input
+                placeholder='Username'
+                name='username'
+                type="text"
+                id="username"
+                value={formData?.username}
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
-        </div>
-        <div className="form-group">
+          <div className="form-group">
 
-          <div className="input-with-icon">
-            <FontAwesomeIcon icon={faLock} className="input-icon" />
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder='Password'
-            />
+            <div className="input-with-icon">
+              <FontAwesomeIcon icon={faLock} className="input-icon" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name='password'
+                id="password"
+                value={formData?.password}
+                onChange={handleInputChange}
+                placeholder='Password'
+              />
+              <FontAwesomeIcon
+                icon={showPassword ? faEye : faEyeSlash}
+                className="password-toggle-icon"
+                onClick={togglePasswordVisibility}
+              />
+            </div>
           </div>
-        </div>
-        {error && <div className="error">{error}</div>}
-        <button type="submit">Login</button>
-      </form>
-    </div>
+          <button disabled={(formData.username.trim() === '' || formData.password.trim() === '') || formLoading} type="submit">  {formLoading && <FontAwesomeIcon icon={faSpinner} spin />} Login</button>
+        </form>
+      </div>
+    </>
   );
 };
 
