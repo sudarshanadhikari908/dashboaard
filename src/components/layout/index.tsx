@@ -1,8 +1,7 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import Sidebar from '../sidebar';
 import Header from '../header';
-import './layout.css'; // Import layout-specific CSS for styling
-
+import './layout.css'; 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>

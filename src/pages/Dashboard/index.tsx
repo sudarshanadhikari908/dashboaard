@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Layout from '../../components/layout';
 import './dashboard.css';
 import axiosInstance from '../../axios';
@@ -13,6 +13,8 @@ const Dashboard = () => {
         const response = await axiosInstance.post('transaction-manager/v1/admin/dashboard/search');
         setData(response?.data?.data)
         setLoading(false);
+        console.log(data);
+        console.log(loading);
     };
 
     useEffect(() => {
