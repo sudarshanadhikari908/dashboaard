@@ -1,16 +1,6 @@
-.layout-container {
+.content-container {
     display: flex;
-    flex-direction: column; /* Ensure children are stacked vertically */
-    height: 100vh; /* Ensure the layout fills the viewport height */
   }
   
-  .content-container {
-    display: flex;
-    flex: 1;
-  }
   
-  .main-content {
-    flex: 1;
-    overflow: auto; /* Add overflow to main content if needed */
-  }
   

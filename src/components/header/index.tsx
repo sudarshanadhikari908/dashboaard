@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import profileImage from '../../assets/profile.jpg';
+import logo from '../../assets/logo.png';
 import './header.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,7 +33,7 @@ const Header = () => {
     return (
         <div className="header-container">
             <div className="logo">
-                <img src={'logo'} alt="Logo" />
+                <img src={logo} alt="Logo" />
             </div>
             <div className="profile-image-container" onClick={toggleProfileCard}>
                 <img src={profileImage} alt="Profile" className="profile-image" />

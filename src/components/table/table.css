@@ -1,56 +1,110 @@
 .table-container {
   overflow-x: auto;
   margin-left: 5px;
+  margin-bottom: 20px;
+  max-height: calc(100vh - 150px);
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
+
 .custom-table {
   border-collapse: collapse;
-  width: 100%; 
-  max-width: calc(
-    100% - 20px
-  );
-  border-radius: 8px;
-  overflow: hidden;
+  width: 100%;
+  max-width: calc(100% - 20px);
+  background-color: #fff; 
+}
+
+.custom-table thead {
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 1;
 }
 
 .custom-table th {
   background-color: #f2f2f2;
   font-weight: bold;
-  padding: 10px;
+  padding: 10px 20px;
   text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.custom-table tbody {
+  cursor: pointer;
+  border-bottom: 2px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .custom-table td {
-  padding: 10px;
+  padding: 20px;
+  text-align: left;
   border-bottom: 1px solid #ddd;
+}
+.custom-table tbody tr:hover {
+  background-color: #f2f2f2;
 }
 
 .custom-table tr:last-child td {
   border-bottom: none;
-}
-
-.custom-table th,
-.custom-table td {
-  white-space: nowrap;
+  border-radius: 3px;
 }
 
 .pagination {
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 2; 
+  width: 100%;
+  padding: 10px 0;
   margin-top: 10px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
 }
 
-.pagination button {
-  background-color: #f2f2f2;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0 2px;
+.pagination h5 {
+  margin-right: 3PX; 
+  font-size: 1.1em; 
+}
+
+.pagination button,
+.pagination select {
+  margin-right: 5px;
   padding: 5px 10px;
+  width: auto;
+  font-size: 1.1em;
+  
+}
+.pagination select {
+  border: none;
+  background-color: #f2f2f2;
+  font-size: 1.1em;
 }
 
 .pagination button:hover {
-  background-color: #e0e0e0;
+  background-color: rgba(101, 56, 182, 0.4);
 }
 
 .pagination .active {
   background-color: #ccc;
+}
+
+.table-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
